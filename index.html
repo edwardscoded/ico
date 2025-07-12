@@ -38,9 +38,20 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            background: url('images/Untitled-1.png') center center no-repeat;
+            background-size: cover;
+            z-index: -2;
+        }
+        
+        /* Fallback background only if image fails to load */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background: 
-                url('images/Untitled-1.png') center center no-repeat,
-                /* CSS fallback ritual chamber */
                 radial-gradient(circle at 35% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
                 radial-gradient(circle at 65% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
                 radial-gradient(circle at 50% 60%, rgba(139, 69, 19, 0.4) 10%, transparent 20%),
@@ -49,8 +60,7 @@
                 radial-gradient(circle at 25% 85%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
                 radial-gradient(circle at 75% 85%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
                 linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
-            background-size: cover;
-            z-index: -2;
+            z-index: -3;
         }
         
         /* Floating mystical sigils */
