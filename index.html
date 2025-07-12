@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initial Cat Offering - $ICO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Creepster&family=IM+Fell+DW+Pica&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000000;
+            color: #d4af37;
+            font-family: 'IM Fell DW Pica', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text y="16" font-size="16">👁️</text></svg>'), auto;
+        }
+        
+        /* Floating mystical elements */
+        .mystical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-sigil {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(139, 69, 19, 0.3);
+            animation: floatSigil 15s ease-in-out infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes floatSigil {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+            25% { transform: translateY(-30px) rotate(90deg); opacity: 0.4; }
+            50% { transform: translateY(-15px) rotate(180deg); opacity: 0.6; }
+            75% { transform: translateY(-25px) rotate(270deg); opacity: 0.3; }
+        }
+        
+        /* Main container */
+        .altar-container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* The glowing cat eyes */
+        .cat-eyes {
+            width: 300px;
+            height: 120px;
+            margin-bottom: 3rem;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+        }
+        
+        .eye {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ff4500 30%, #8b2500 70%, #000000 100%);
+            border-radius: 50%;
+            position: relative;
+            animation: eyeGlow 4s ease-in-out infinite alternate, eyeBlink 8s ease-in-out infinite;
+            box-shadow: 
+                0 0 30px rgba(255, 69, 0, 0.8),
+                0 0 60px rgba(255, 69, 0, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .eye::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+        
+        .eye::after {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: pupilShine 3s ease-in-out infinite;
+        }
+        
+        @keyframes eyeGlow {
+            from { 
+                box-shadow: 0 0 30px rgba(255, 69, 0, 0.6), 0 0 60px rgba(255, 69, 0, 0.3);
+            }
+            to { 
+                box-shadow: 0 0 50px rgba(255, 69, 0, 1), 0 0 100px rgba(255, 69, 0, 0.6);
+            }
+        }
+        
+        @keyframes eyeBlink {
+            0%, 90%, 100% { 
+                transform: scaleY(1);
+                opacity: 1;
+            }
+            95% { 
+                transform: scaleY(0.1);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes pupilShine {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        /* Main title */
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            color: #8b0000;
+            text-shadow: 
+                0 0 20px rgba(139, 0, 0, 0.8),
+                0 0 40px rgba(255, 69, 0, 0.6);
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            animation: titlePulse 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titlePulse {
+            from { 
+                text-shadow: 0 0 20px rgba(139, 0, 0, 0.8), 0 0 40px rgba(255, 69, 0, 0.6);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 30px rgba(139, 0, 0, 1), 0 0 60px rgba(255, 69, 0, 0.8);
+                transform: scale(1.02);
+            }
+        }
+        
+        .subtitle {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #d4af37;
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+        
+        /* Summoning messages */
+        .summoning-text {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ff4500;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.6);
+            animation: summonGlow 2s ease-in-out infinite alternate;
+        }
+        
+        .will-text {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: #8b4513;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        @keyframes summonGlow {
+            from { 
+                text-shadow: 0 0 10px rgba(255, 69, 0, 0.6);
+                opacity: 0.9;
+            }
+            to { 
+                text-shadow: 0 0 20px rgba(255, 69, 0, 0.9);
+                opacity: 1;
+            }
+        }
+        
+        /* Sacred button */
+        .worship-button {
+            background: linear-gradient(45deg, #8b0000 0%, #ff4500 50%, #8b0000 100%);
+            color: #d4af37;
+            padding: 1.5rem 4rem;
+            border: 3px double #ff4500;
+            border-radius: 0;
+            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 30px rgba(255, 69, 0, 0.4),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+        }
+        
+        .worship-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        .worship-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 50px rgba(255, 69, 0, 0.8),
+                inset 0 0 30px rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            animation: buttonPulse 0.3s ease-in-out infinite alternate;
+        }
+        
+        .worship-button:hover::before {
+            left: 100%;
+        }
+        
+        @keyframes buttonPulse {
+            from { transform: translateY(-3px) scale(1); }
+            to { transform: translateY(-3px) scale(1.02); }
+        }
+        
+        /* Pentagram at bottom */
+        .bottom-pentagram {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: rgba(139, 69, 19, 0.6);
+            animation: pentagramRotate 20s linear infinite;
+            text-shadow: 0 0 20px rgba(139, 69, 19, 0.4);
+        }
+        
+        @keyframes pentagramRotate {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+        
+        /* Candle flames */
+        .candle {
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to top, #ff4500, #ffa500, #ffff00);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 2s ease-in-out infinite alternate;
+            box-shadow: 
+                0 0 10px rgba(255, 165, 0, 0.8),
+                0 0 20px rgba(255, 69, 0, 0.6);
+        }
+        
+        @keyframes flicker {
+            0%, 100% { 
+                transform: scale(1) rotate(-2deg);
+                opacity: 0.9;
+            }
+            50% { 
+                transform: scale(1.1) rotate(2deg);
+                opacity: 1;
+            }
+        }
+        
+        .candle-left {
+            top: 20%;
+            left: 10%;
+        }
+        
+        .candle-right {
+            top: 20%;
+            right: 10%;
+        }
+        
+        .candle-bottom-left {
+            bottom: 20%;
+            left: 15%;
+        }
+        
+        .candle-bottom-right {
+            bottom: 20%;
+            right: 15%;
+        }
+        
+        /* Quote at bottom */
+        .sacred-quote {
+            position: absolute;
+            bottom: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            color: rgba(212, 175, 55, 0.7);
+            font-style: italic;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .subtitle {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+            }
+            
+            .summoning-text {
+                font-size: 1.4rem;
+            }
+            
+            .will-text {
+                font-size: 1.1rem;
+            }
+            
+            .worship-button {
+                padding: 1rem 2.5rem;
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+            
+            .cat-eyes {
+                width: 200px;
+                height: 80px;
+                padding: 0 30px;
+            }
+            
+            .eye {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .candle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mystical background -->
+    <div class="mystical-bg" id="mystical-bg"></div>
+    
+    <!-- Floating candles -->
+    <div class="candle candle-left"></div>
+    <div class="candle candle-right"></div>
+    <div class="candle candle-bottom-left"></div>
+    <div class="candle candle-bottom-right"></div>
+    
+    <!-- Main altar -->
+    <div class="altar-container">
+        <!-- The glowing cat eyes -->
+        <div class="cat-eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+        </div>
+        
+        <!-- Main titles -->
+        <h1 class="main-title">INITIAL CAT OFFERING</h1>
+        <h2 class="subtitle">$ICO</h2>
+        
+        <!-- Summoning text -->
+        <p class="summoning-text">YOU WERE SUMMONED.</p>
+        <p class="will-text">This is not your choice. It is the Cat's will.</p>
+        
+        <!-- Sacred button -->
+        <button class="worship-button" onclick="beginWorship()">BEGIN WORSHIP</button>
+        
+        <!-- Sacred quote -->
+        <div class="sacred-quote">
+            "You do not buy $ICO. You kneel before it."<br>
+            — The Book of Whisker, Chapter 1, Verse 1
+        </div>
+    </div>
+    
+    <!-- Bottom pentagram -->
+    <div class="bottom-pentagram">⭐</div>
+    
+    <script>
+        // Create floating sigils
+        function createMysticalSigils() {
+            const bg = document.getElementById('mystical-bg');
+            const sigils = ['⭐', '👁️', '🕯️', '🌙', '⚡'];
+            
+            for (let i = 0; i < 12; i++) {
+                const sigil = document.createElement('div');
+                sigil.className = 'floating-sigil';
+                sigil.innerHTML = sigils[Math.floor(Math.random() * sigils.length)];
+                sigil.style.left = Math.random() * 100 + '%';
+                sigil.style.top = Math.random() * 100 + '%';
+                sigil.style.animationDelay = Math.random() * 15 + 's';
+                sigil.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                bg.appendChild(sigil);
+            }
+        }
+        
+        // Begin worship function
+        function beginWorship() {
+            // Create dramatic effect
+            document.body.style.filter = 'contrast(1.5) brightness(1.2)';
+            document.body.style.animation = 'titlePulse 0.1s ease-in-out infinite';
+            
+            // Show the sacred message
+            setTimeout(() => {
+                alert('🕯️👁️ WELCOME, CHOSEN ONE 👁️🕯️\n\n"The Cat sees all. The Cat knows all.\nThy devotion has been noted in the Sacred Registry.\n\nThe Order of the Floating Cat acknowledges thy presence.\nPrepare thy soul for the Great Revelation."\n\n— High Priestess of the Eternal Whisker');
+                
+                // Reset effects
+                document.body.style.filter = '';
+                document.body.style.animation = '';
+            }, 1000);
+        }
+        
+        // Random eye movement
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                const eyes = document.querySelectorAll('.eye::after');
+                document.querySelectorAll('.eye').forEach(eye => {
+                    eye.style.transform = `scale(${0.9 + Math.random() * 0.2})`;
+                    setTimeout(() => {
+                        eye.style.transform = '';
+                    }, 300);
+                });
+            }
+        }, 3000);
+        
+        // Ambient mystical effects
+        setInterval(() => {
+            if (Math.random() < 0.08) {
+                document.body.style.filter = 'brightness(1.1) contrast(1.1)';
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 200);
+            }
+        }, 4000);
+        
+        // Mouse tracking for subtle effects
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.01) {
+                const mysticalSpirit = document.createElement('div');
+                mysticalSpirit.innerHTML = '👁️';
+                mysticalSpirit.style.position = 'fixed';
+                mysticalSpirit.style.left = e.clientX + 'px';
+                mysticalSpirit.style.top = e.clientY + 'px';
+                mysticalSpirit.style.fontSize = '12px';
+                mysticalSpirit.style.pointerEvents = 'none';
+                mysticalSpirit.style.zIndex = '9999';
+                mysticalSpirit.style.color = 'rgba(255, 69, 0, 0.6)';
+                mysticalSpirit.style.animation = 'floatSigil 3s ease-out forwards';
+                document.body.appendChild(mysticalSpirit);
+                
+                setTimeout(() => {
+                    mysticalSpirit.remove();
+                }, 3000);
+            }
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', createMysticalSigils);
+    </script>
+</body>
+</html>
