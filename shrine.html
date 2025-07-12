@@ -578,6 +578,7 @@
                         <div class="meme-title">${title}</div>
                         <div class="meme-blessing">${blessing}</div>
                     `;
+                    console.log(`✅ Loaded: ${imagePath}`);
                 };
                 
                 img.onerror = function() {
@@ -586,10 +587,15 @@
                         <div class="meme-title">${title}</div>
                         <div class="meme-blessing">${blessing}</div>
                         <div style="color: #ff4500; font-size: 0.8rem; text-align: center; margin-top: 0.5rem;">Sacred Image Awaiting Manifestation</div>
+                        <div style="color: #666; font-size: 0.7rem; text-align: center; margin-top: 0.2rem;">${imagePath}</div>
                     `;
+                    console.log(`❌ Failed: ${imagePath}`);
                 };
                 
-                img.src = imagePath;
+                // Add a small delay to help with loading
+                setTimeout(() => {
+                    img.src = imagePath;
+                }, index * 100);
                 memeGrid.appendChild(memeCard);
             });
         }
