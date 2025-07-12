@@ -638,9 +638,6 @@
         <!-- Sacred button -->
         <button class="worship-button" onclick="beginWorship()">PARTICIPATE IN THE ICO</button>
         
-        <!-- Shrine access button -->
-        <button class="shrine-button" onclick="enterShrine()">ENTER THE SACRED SHRINE</button>
-        
         <!-- X page button -->
         <button class="x-button" onclick="openTwitter()">FOLLOW THE ORDER ON X</button>
         
@@ -696,19 +693,8 @@
             }
         }
         
-        // Begin worship function - NOW OPENS MEME SHRINE
+        // Begin worship function - NOW GOES TO SHRINE.HTML
         function beginWorship() {
-            // Hide main altar and show meme shrine
-            document.querySelector('.altar-container').style.display = 'none';
-            document.querySelector('.pentagram-overlay').style.display = 'none';
-            document.querySelector('.sacred-quote').style.display = 'none';
-            
-            // Show meme shrine
-            showMemeShrine();
-        }
-        
-        // Enter Sacred Shrine function
-        function enterShrine() {
             window.location.href = 'shrine.html';
         }
         
