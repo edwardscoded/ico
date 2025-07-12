@@ -13,10 +13,15 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+        }
+        
         body {
-            background: url('images/af2b85cb-01f5-4921-ac63-7f2f89d53ff1.png') center center no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
             color: #d4af37;
             font-family: 'IM Fell DW Pica', serif;
             overflow-x: hidden;
@@ -25,21 +30,29 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text y="16" font-size="16">👁️</text></svg>'), auto;
         }
         
-        /* Fallback for very wide screens */
-        html {
-            background: #000000;
-        }
-        
-        /* Ensure background covers on ultra-wide screens */
+        /* Full screen background layer */
         body::before {
             content: '';
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('images/af2b85cb-01f5-4921-ac63-7f2f89d53ff1.png') center center no-repeat;
+            width: 100vw;
+            height: 100vh;
+            background: url('images/Untitled-1.png') center center no-repeat;
             background-size: cover;
+            z-index: -2;
+        }
+        
+        /* Additional fallback for ultra-wide screens */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('images/Untitled-1.png') center center no-repeat;
+            background-size: 100% 100%;
             z-index: -1;
         }
         
