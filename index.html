@@ -14,7 +14,7 @@
         }
         
         body {
-            background: #000000;
+            background: url('images/af2b85cb-01f5-4921-ac63-7f2f89d53ff1.png') center center / cover no-repeat fixed;
             color: #d4af37;
             font-family: 'IM Fell DW Pica', serif;
             overflow-x: hidden;
@@ -49,7 +49,7 @@
             75% { transform: translateY(-25px) rotate(270deg); opacity: 0.3; }
         }
         
-        /* Main container */
+        /* Add dark overlay to ensure text readability */
         .altar-container {
             position: relative;
             z-index: 2;
@@ -60,18 +60,12 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
         }
         
-        /* The glowing cat eyes */
+        /* Remove the custom cat eyes since they're in the background */
         .cat-eyes {
-            width: 300px;
-            height: 120px;
-            margin-bottom: 3rem;
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 50px;
+            display: none;
         }
         
         .eye {
@@ -248,16 +242,9 @@
             to { transform: translateY(-3px) scale(1.02); }
         }
         
-        /* Pentagram at bottom */
+        /* Remove bottom pentagram since it's in the background */
         .bottom-pentagram {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-            color: rgba(139, 69, 19, 0.6);
-            animation: pentagramRotate 20s linear infinite;
-            text-shadow: 0 0 20px rgba(139, 69, 19, 0.4);
+            display: none;
         }
         
         @keyframes pentagramRotate {
@@ -265,17 +252,9 @@
             to { transform: translateX(-50%) rotate(360deg); }
         }
         
-        /* Candle flames */
+        /* Remove custom candles since they're in the background */
         .candle {
-            position: absolute;
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(to top, #ff4500, #ffa500, #ffff00);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: flicker 2s ease-in-out infinite alternate;
-            box-shadow: 
-                0 0 10px rgba(255, 165, 0, 0.8),
-                0 0 20px rgba(255, 69, 0, 0.6);
+            display: none;
         }
         
         @keyframes flicker {
@@ -370,20 +349,8 @@
     <!-- Mystical background -->
     <div class="mystical-bg" id="mystical-bg"></div>
     
-    <!-- Floating candles -->
-    <div class="candle candle-left"></div>
-    <div class="candle candle-right"></div>
-    <div class="candle candle-bottom-left"></div>
-    <div class="candle candle-bottom-right"></div>
-    
     <!-- Main altar -->
     <div class="altar-container">
-        <!-- The glowing cat eyes -->
-        <div class="cat-eyes">
-            <div class="eye"></div>
-            <div class="eye"></div>
-        </div>
-        
         <!-- Main titles -->
         <h1 class="main-title">INITIAL CAT OFFERING</h1>
         <h2 class="subtitle">$ICO</h2>
@@ -401,9 +368,6 @@
             — The Book of Whisker, Chapter 1, Verse 1
         </div>
     </div>
-    
-    <!-- Bottom pentagram -->
-    <div class="bottom-pentagram">⭐</div>
     
     <script>
         // Create floating sigils
