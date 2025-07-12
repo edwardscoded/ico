@@ -68,7 +68,7 @@
             75% { transform: translateY(-25px) rotate(270deg); opacity: 0.3; }
         }
         
-        /* Main container - REMOVED BACKGROUND OVERLAY */
+        /* Main container - MOVED CONTENT UP */
         .altar-container {
             position: relative;
             z-index: 2;
@@ -79,6 +79,7 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
+            margin-top: -10vh;
         }
         
         /* Main title */
@@ -219,7 +220,7 @@
         
         /* Contract Address Section */
         .contract-section {
-            margin: 2rem 0;
+            margin: 0.5rem 0;
             display: flex;
             justify-content: center;
         }
@@ -281,7 +282,7 @@
         /* Sacred quote */
         .sacred-quote {
             position: fixed;
-            bottom: 8rem;
+            bottom: 6rem;
             left: 50%;
             transform: translateX(-50%);
             font-size: 1.1rem;
