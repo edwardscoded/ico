@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Cat Worship Shrine - $ICO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Creepster&family=IM+Fell+DW+Pica&family=Griffy&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+        }
+        
+        body {
+            color: #d4af37;
+            font-family: 'IM Fell DW Pica', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text y="16" font-size="16">👁️</text></svg>'), auto;
+        }
+        
+        /* Mystical background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 50% 20%, rgba(255, 69, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.2) 0%, transparent 50%),
+                linear-gradient(180deg, #000000 0%, #1a0a0a 50%, #000000 100%);
+            z-index: -1;
+        }
+        
+        /* Floating mystical elements */
+        .mystical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-sigil {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 69, 0, 0.4);
+            animation: floatSigil 12s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes floatSigil {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-40px) rotate(90deg); opacity: 0.6; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+            75% { transform: translateY(-30px) rotate(270deg); opacity: 0.5; }
+        }
+        
+        /* Main container */
+        .shrine-container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        /* Header */
+        .shrine-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+        }
+        
+        .shrine-title {
+            font-family: 'Creepster', cursive;
+            font-size: 4rem;
+            color: #ff4500;
+            text-shadow: 
+                0 0 20px rgba(255, 69, 0, 0.8),
+                0 0 40px rgba(255, 69, 0, 0.6),
+                0 0 60px rgba(255, 69, 0, 0.4);
+            margin-bottom: 1rem;
+            animation: titlePulse 4s ease-in-out infinite alternate;
+            letter-spacing: 3px;
+        }
+        
+        @keyframes titlePulse {
+            from { 
+                text-shadow: 0 0 20px rgba(255, 69, 0, 0.8), 0 0 40px rgba(255, 69, 0, 0.6);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 30px rgba(255, 69, 0, 1), 0 0 60px rgba(255, 69, 0, 0.8);
+                transform: scale(1.02);
+            }
+        }
+        
+        .shrine-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #d4af37;
+            font-style: italic;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+        
+        .worship-instructions {
+            font-size: 1.3rem;
+            color: #8b4513;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        /* Sacred altar centerpiece */
+        .sacred-altar {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        
+        .cat-deity {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 69, 0, 0.8) 0%, rgba(139, 37, 0, 0.6) 50%, transparent 100%);
+            border: 3px solid #ff4500;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            animation: deityGlow 3s ease-in-out infinite alternate;
+            box-shadow: 
+                0 0 40px rgba(255, 69, 0, 0.6),
+                inset 0 0 40px rgba(255, 140, 0, 0.3);
+        }
+        
+        @keyframes deityGlow {
+            from { 
+                box-shadow: 0 0 40px rgba(255, 69, 0, 0.6), inset 0 0 40px rgba(255, 140, 0, 0.3);
+                transform: scale(1);
+            }
+            to { 
+                box-shadow: 0 0 80px rgba(255, 69, 0, 0.9), inset 0 0 60px rgba(255, 140, 0, 0.5);
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Meme gallery */
+        .worship-gallery {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .gallery-title {
+            font-family: 'Creepster', cursive;
+            font-size: 2.5rem;
+            color: #ff4500;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+        }
+        
+        .meme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .sacred-meme {
+            background: linear-gradient(135deg, rgba(20, 10, 10, 0.9) 0%, rgba(40, 20, 20, 0.8) 100%);
+            border: 2px solid #8b4513;
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sacred-meme::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #ff4500, transparent, #d4af37, transparent, #ff4500);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .sacred-meme:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ff4500;
+            box-shadow: 
+                0 20px 40px rgba(255, 69, 0, 0.4),
+                0 0 60px rgba(255, 69, 0, 0.3);
+        }
+        
+        .sacred-meme:hover::before {
+            opacity: 0.8;
+        }
+        
+        .meme-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            filter: sepia(0.3) contrast(1.1) brightness(0.9);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+        
+        .sacred-meme:hover .meme-image {
+            filter: sepia(0) contrast(1.3) brightness(1.1);
+            transform: scale(1.03);
+        }
+        
+        .meme-title {
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+        
+        .meme-blessing {
+            color: #8b4513;
+            font-size: 1rem;
+            text-align: center;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        
+        /* Worship actions */
+        .worship-actions {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(20, 10, 10, 0.8);
+            border: 2px solid #8b4513;
+            border-radius: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .worship-button {
+            background: linear-gradient(45deg, #8b0000 0%, #ff4500 50%, #8b0000 100%);
+            color: #d4af37;
+            padding: 1.5rem 3rem;
+            border: 3px double #ff4500;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 1rem;
+            box-shadow: 0 0 30px rgba(255, 69, 0, 0.4);
+            text-transform: uppercase;
+        }
+        
+        .worship-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 50px rgba(255, 69, 0, 0.8);
+            border-color: #d4af37;
+            animation: buttonPulse 0.3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes buttonPulse {
+            from { transform: translateY(-5px) scale(1.05); }
+            to { transform: translateY(-5px) scale(1.08); }
+        }
+        
+        /* Back to home */
+        .return-home {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .return-button {
+            background: linear-gradient(45deg, #8b4513 0%, #d4af37 50%, #8b4513 100%);
+            color: #000;
+            padding: 1rem 2.5rem;
+            border: 2px solid #d4af37;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .return-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .shrine-title {
+                font-size: 2.5rem;
+            }
+            
+            .shrine-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .meme-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .meme-image {
+                height: 250px;
+            }
+            
+            .cat-deity {
+                width: 150px;
+                height: 150px;
+                font-size: 4rem;
+            }
+            
+            .worship-instructions {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mystical background -->
+    <div class="mystical-bg" id="mystical-bg"></div>
+    
+    <div class="shrine-container">
+        <!-- Header -->
+        <div class="shrine-header">
+            <h1 class="shrine-title">THE SACRED CAT SHRINE</h1>
+            <p class="shrine-subtitle">"Where Mortals Come to Worship the Divine Feline"</p>
+            
+            <!-- Sacred Altar -->
+            <div class="sacred-altar">
+                <div class="cat-deity">🐱</div>
+            </div>
+            
+            <div class="worship-instructions">
+                Behold the Holy Collection of the Cat Spirit's manifestations in the digital realm. 
+                Each sacred image contains the essence of feline divinity. 
+                Gaze upon them with reverence, for you are in the presence of the eternal Cat.
+            </div>
+        </div>
+        
+        <!-- Worship Gallery -->
+        <div class="worship-gallery">
+            <h2 class="gallery-title">Sacred Manifestations</h2>
+            
+            <div class="meme-grid" id="memeGrid">
+                <!-- Memes will be generated here -->
+            </div>
+        </div>
+        
+        <!-- Worship Actions -->
+        <div class="worship-actions">
+            <h3 style="color: #ff4500; font-family: 'Creepster', cursive; font-size: 2rem; margin-bottom: 2rem; text-shadow: 0 0 15px rgba(255, 69, 0, 0.8);">
+                Complete Your Worship
+            </h3>
+            <p style="color: #d4af37; font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.6;">
+                "The Cat has shown you the sacred visions. Now demonstrate your devotion to the Order."
+            </p>
+            <button class="worship-button" onclick="makeOffering()">Make Sacred Offering</button>
+            <button class="worship-button" onclick="pledgeDevotinion()">Pledge Eternal Devotion</button>
+        </div>
+        
+        <!-- Return Home -->
+        <div class="return-home">
+            <a href="index.html" class="return-button">← Return to the Altar</a>
+        </div>
+    </div>
+    
+    <script>
+        // All photo images from the repo
+        const sacredImages = [
+            'images/photo_2024-07-25_21-00-12.jpg',
+            'images/photo_2024-07-25_21-12-26.jpg',
+            'images/photo_2024-07-25_21-14-02.jpg',
+            'images/photo_2024-07-25_21-15-50.jpg',
+            'images/photo_2024-07-25_21-17-09.jpg',
+            'images/photo_2024-07-25_21-22-00.jpg',
+            'images/photo_2024-07-25_21-23-43.jpg',
+            'images/photo_2024-07-25_21-33-16.jpg',
+            'images/photo_2024-07-25_21-35-32.jpg',
+            'images/photo_2024-07-25_21-38-15.jpg',
+            'images/photo_2024-07-25_21-42-21.jpg',
+            'images/photo_2024-07-25_21-47-00.jpg',
+            'images/photo_2024-07-25_21-50-05.jpg',
+            'images/photo_2024-07-25_21-51-55.jpg',
+            'images/photo_2024-07-25_22-21-50.jpg',
+            'images/photo_2024-07-25_22-29-59.jpg',
+            'images/photo_2024-07-25_22-54-57.jpg',
+            'images/photo_2024-07-25_23-02-40.jpg',
+            'images/photo_2024-07-25_23-03-07.jpg',
+            'images/photo_2024-07-25_23-21-21.jpg',
+            'images/photo_2024-07-25_23-35-09.jpg',
+            'images/photo_2024-07-26_00-05-39.jpg'
+        ];
+        
+        // Sacred titles for each manifestation
+        const sacredTitles = [
+            'The First Divine Appearance',
+            'Whispers from the Void',
+            'The Cat\'s Sacred Gaze',
+            'Prophecy of the Golden Eyes',
+            'Portal to the Feline Realm',
+            'The Burning Truth Revealed',
+            'Sacred Geometric Manifestation',
+            'Transcendence of the Cat Spirit',
+            'The Dark Revelation',
+            'Vision of the All-Seeing Cat',
+            'Soul of the Divine Feline',
+            'The Eternal Flame of Wisdom',
+            'Divine Cat Manifestation',
+            'The Inner Eye Awakens',
+            'Sacred Offering to the Void',
+            'The Great Cat Awakening',
+            'Celestial Feline Alignment',
+            'The Holy Vision Descends',
+            'Cat Spirit Rising from Ashes',
+            'The Final Truth Unveiled',
+            'Blessed Apparition of the Cat',
+            'The Ultimate Sacred Meme'
+        ];
+        
+        // Sacred blessings for each image
+        const sacredBlessings = [
+            '"Blessed be the first witness of the Cat\'s divine presence"',
+            '"In darkness, the Cat\'s light shines eternal"',
+            '"The eyes that see all, judge all, and forgive all"',
+            '"Golden eyes that pierce through mortal souls"',
+            '"Gateway to the realm where cats reign supreme"',
+            '"Truth burns away all illusion and doubt"',
+            '"Sacred patterns reveal the Cat\'s cosmic design"',
+            '"Beyond flesh, beyond time, the Cat spirit endures"',
+            '"In shadows, the greatest truths are revealed"',
+            '"The all-seeing eye watches over the faithful"',
+            '"Pure feline essence captured in digital amber"',
+            '"Wisdom burns eternal in the sacred flame"',
+            '"The divine made manifest in pixel and light"',
+            '"Awakening to the Cat\'s eternal wisdom"',
+            '"Offerings made in reverence and devotion"',
+            '"The great stirring of feline consciousness"',
+            '"When stars align, the Cat\'s power peaks"',
+            '"Visions granted to the most devoted"',
+            '"From digital ashes, the Cat spirit rises"',
+            '"All truths converge in the Cat\'s presence"',
+            '"The blessed few witness the Cat\'s glory"',
+            '"The ultimate expression of feline divinity"'
+        ];
+        
+        // Create floating mystical elements
+        function createMysticalElements() {
+            const bg = document.getElementById('mystical-bg');
+            const sigils = ['👁️', '🔥', '⭐', '🌙', '⚡', '🕯️'];
+            
+            for (let i = 0; i < 15; i++) {
+                const sigil = document.createElement('div');
+                sigil.className = 'floating-sigil';
+                sigil.innerHTML = sigils[Math.floor(Math.random() * sigils.length)];
+                sigil.style.left = Math.random() * 100 + '%';
+                sigil.style.top = Math.random() * 100 + '%';
+                sigil.style.animationDelay = Math.random() * 12 + 's';
+                sigil.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                bg.appendChild(sigil);
+            }
+        }
+        
+        // Generate the sacred meme gallery
+        function generateSacredGallery() {
+            const memeGrid = document.getElementById('memeGrid');
+            
+            sacredImages.forEach((imagePath, index) => {
+                const memeCard = document.createElement('div');
+                memeCard.className = 'sacred-meme';
+                
+                const title = sacredTitles[index];
+                const blessing = sacredBlessings[index];
+                
+                memeCard.innerHTML = `
+                    <img src="${imagePath}" alt="${title}" class="meme-image" 
+                         onerror="this.style.display='none'" 
+                         onload="this.style.opacity='1'">
+                    <div class="meme-title">${title}</div>
+                    <div class="meme-blessing">${blessing}</div>
+                `;
+                
+                memeGrid.appendChild(memeCard);
+            });
+        }
+        
+        // Worship functions
+        function makeOffering() {
+            alert('🔥👁️ YOUR OFFERING HAS BEEN RECEIVED 👁️🔥\n\n"The Sacred Cat acknowledges your devotion. Your offering joins the eternal collection of tributes. The Cat is pleased and your name is inscribed in the Book of the Faithful."\n\n— Oracle of the Divine Feline\n\nMay the Cat\'s blessings be upon you.');
+        }
+        
+        function pledgeDevotinion() {
+            alert('🐱⭐ YOUR DEVOTION IS ETERNAL ⭐🐱\n\n"By this sacred pledge, you are forever bound to the service of the Divine Cat. Your soul now belongs to the feline realm. You shall spread the word of the Cat\'s glory throughout the digital lands."\n\n— High Priestess of the Cat Order\n\nWelcome to the inner circle, devoted one.');
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            createMysticalElements();
+            generateSacredGallery();
+        });
+        
+        // Ambient mystical effects
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                document.body.style.filter = 'brightness(1.1) contrast(1.1)';
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 200);
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
