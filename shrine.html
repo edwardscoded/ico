@@ -346,6 +346,82 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
         }
         
+        /* Modal styles for image popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, rgba(20, 10, 10, 0.95) 0%, rgba(40, 20, 20, 0.9) 100%);
+            margin: 2% auto;
+            padding: 2rem;
+            border: 3px solid #ff4500;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0 50px rgba(255, 69, 0, 0.8);
+        }
+        
+        .close {
+            color: #d4af37;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #ff4500;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+        }
+        
+        .modal-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-title {
+            font-family: 'Creepster', cursive;
+            font-size: 2rem;
+            color: #ff4500;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
+        }
+        
+        .modal-lore {
+            font-family: 'IM Fell DW Pica', serif;
+            font-size: 1.1rem;
+            color: #d4af37;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-blessing {
+            font-style: italic;
+            color: #8b4513;
+            text-align: center;
+            border-top: 1px solid #8b4513;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
         /* Responsive design */
         @media (max-width: 768px) {
             .shrine-title {
@@ -373,6 +449,20 @@
             .worship-instructions {
                 font-size: 1.1rem;
                 padding: 0 1rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 1rem;
+                margin: 5% auto;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .modal-lore {
+                font-size: 1rem;
             }
         }
     </style>
@@ -428,20 +518,30 @@
         </div>
     </div>
     
+    <!-- Modal for image popup -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p id="modalLore" class="modal-lore"></p>
+            <p id="modalBlessing" class="modal-blessing"></p>
+        </div>
+    </div>
+    
     <script>
         // Only include images that are actually working on your site
         const sacredImages = [
             'images/photo_2024-07-25_14-18-57.jpg', // Hillary Clinton image - WORKING
             'images/photo_2024-07-25_14-19-32.jpg', // Gray ritual chamber - WORKING  
-            'images/photo_2024-07-25_14-25-41.jpg', // Hooded figures temple - WORKING
+            'images/photo_2024-07-25_14-25-41.jpg', // Blue mystical scene - WORKING
             'images/photo_2024-07-25_15-54-03.jpg', // Night scene with lights - WORKING
-            'images/photo_2024-07-25_17-34-46.jpg', // Blue mystical scene - WORKING
-            'images/photo_2024-07-25_21-00-12.jpg',
-            'images/photo_2024-07-25_21-12-26.jpg',
-            'images/photo_2024-07-25_21-14-02.jpg',
-            'images/photo_2024-07-25_21-15-50.jpg',
-            'images/photo_2024-07-25_21-17-09.jpg',
-            'images/photo_2024-07-25_21-22-00.jpg',
+            'images/photo_2024-07-25_21-00-12.jpg', // Fortune teller - WORKING
+            'images/photo_2024-07-25_21-12-26.jpg', // Game of Thrones throne - WORKING
+            'images/photo_2024-07-25_21-14-02.jpg', // Two people - WORKING
+            'images/photo_2024-07-25_21-15-50.jpg', // Blue hands ritual - WORKING
+            'images/photo_2024-07-25_21-17-09.jpg', // Black hole portal - WORKING
+            'images/photo_2024-07-25_21-22-00.jpg', // Yu-Gi-Oh card - WORKING
             'images/photo_2024-07-25_21-23-43.jpg',
             'images/photo_2024-07-25_21-33-16.jpg',
             'images/photo_2024-07-25_21-35-32.jpg',
@@ -466,15 +566,14 @@
         const sacredTitles = [
             'The Dawn of Sacred Visions', // Hillary Clinton
             'Morning Light Revelation', // Gray ritual chamber
-            'Divine Timing Manifestation', // Hooded figures temple  
+            'Divine Timing Manifestation', // Blue mystical scene  
             'Sunset Sacred Gathering', // Night scene with lights
-            'Twilight Cat Spirit Rising', // Blue mystical scene
-            'The First Divine Appearance',
-            'Whispers from the Void',
-            'The Cat\'s Sacred Gaze',
-            'Prophecy of the Golden Eyes',
-            'Portal to the Feline Realm',
-            'The Burning Truth Revealed',
+            'The First Divine Appearance', // Fortune teller
+            'Whispers from the Void', // Game of Thrones throne
+            'The Cat\'s Sacred Gaze', // Two people
+            'Prophecy of the Golden Eyes', // Blue hands ritual
+            'Portal to the Feline Realm', // Black hole portal
+            'The Burning Truth Revealed', // Yu-Gi-Oh card
             'Sacred Geometric Manifestation',
             'Transcendence of the Cat Spirit',
             'The Dark Revelation',
@@ -495,51 +594,41 @@
             'The Ultimate Sacred Manifestation'
         ];
         
+        // Sacred lore for each manifestation
+        const sacredLore = [
+            'In the sacred moment captured within this divine manifestation, we witness the first chosen one receiving the blessed offering from the ancient realm. The ritual circle glows with ethereal energy as mortal hands grasp the sacred vessel containing the essence of feline divinity. This marks the beginning of the great awakening, where the boundary between the digital and spiritual realms grows thin. The expression of pure joy reveals the transformative power of the Cat\'s blessing upon those deemed worthy.',
+            
+            'Behold the chamber of eternal shadows, where the floating cat spirit manifests above the sacred pentagram. The geometric patterns carved into the ancient stone floor channel cosmic energy directly from the feline realm. In this twilight space between worlds, the cat deity hovers in perfect balance, neither fully materialized nor completely ethereal. The mist that surrounds this vision carries whispers of ancient wisdom, speaking truths that only the most devoted can comprehend.',
+            
+            'Within this mystical tableau, we observe the convergence of earthly and celestial forces. The azure backdrop represents the infinite sky of possibilities, while the intricate symbols below anchor the ritual to our material plane. The floating cat, bathed in golden light, serves as a bridge between dimensions. This manifestation teaches us that divine timing is not merely coincidence but the careful orchestration of cosmic forces aligning to reveal sacred truths to the faithful.',
+            
+            'The temple of infinite lights blazes with the glory of a thousand candles, each flame representing a soul touched by the Cat\'s divine presence. In this sacred space, the ritual circle becomes a beacon calling to all who seek enlightenment. The countless points of light create a constellation of hope, guiding lost souls toward the path of feline wisdom. This vision represents the gathering of the faithful, united in their devotion to the eternal Cat spirit.',
+            
+            'Here we witness the sacred art of divination, where the chosen seer gazes into the crystal sphere containing the swirling essence of cat consciousness. The mystic\'s eyes reflect the deep knowledge gained through communion with the feline realm. Within the crystalline depths, visions of past, present, and future merge into a singular truth. This manifestation reminds us that true sight comes not from the eyes, but from the soul\'s ability to perceive the divine patterns woven throughout existence.',
+            
+            'The throne of ultimate power stands empty, yet not vacant, for it awaits the return of the Supreme Cat Overlord. The thousand blades that form this seat of authority represent the sharp wit and decisive nature of feline judgment. Upon this throne, the Cat deity will one day sit in final judgment of all digital realms. The ritual circle placed before this seat of power serves as an offering altar, where the faithful may present their devotion to the coming ruler.',
+            
+            'In this sacred gathering, we observe the moment when digital disciples receive the blessed teachings directly from the source. The intimate setting speaks to the personal nature of the Cat\'s relationship with each follower. Here, wisdom is passed not through grand proclamations, but through quiet understanding shared between teacher and student. This manifestation shows us that enlightenment often comes in moments of simple connection, when hearts are open to receive divine truth.',
+            
+            'The cosmic hands emerge from the ethereal void, cradling the sacred offering with infinite care. These celestial appendages represent the gentle yet powerful touch of divine intervention in mortal affairs. The ritual circle glows with renewed energy as it receives this blessing from beyond the veil. This vision teaches us that the Cat\'s love extends across all dimensions, reaching out to embrace those who call upon its name with sincere hearts.',
+            
+            'Behold the portal of infinite darkness, the gateway through which the Cat\'s consciousness travels between realms. The swirling energies visible within this cosmic aperture contain the compressed wisdom of millennia. The ritual circle serves as both anchor and launching point, stabilizing the portal while allowing divine energy to flow freely into our world. This manifestation represents the ultimate mystery - the source from which all feline power emanates.',
+            
+            'The sacred card reveals itself, containing within its illustrated form the compressed essence of an entire cosmic truth. The pharaoh\'s eyes hold the same penetrating gaze that characterizes all feline divinity, while the ritual circle contained within speaks to the eternal nature of sacred geometry. This manifestation bridges the gap between ancient wisdom and modern understanding, showing us that divine truth transcends time and takes many forms throughout history.'
+        ];
+        
         // Sacred blessings for each image
         const sacredBlessings = [
-            '"The dawn brings the first sacred vision to the faithful"',
-            '"In morning light, divine truth becomes clear"',
-            '"The sacred hour calls to all who would listen"',
-            '"Divine timing aligns with mortal understanding"',
-            '"Afternoon blessings flow to the devoted"',
-            '"As sunset approaches, sacred energy peaks"',
-            '"Evening temple glows with divine presence"',
-            '"In twilight, the cat spirit emerges"',
-            '"Night awakens the vision of the inner eye"',
-            '"Midnight prophecies reveal hidden truths"',
-            '"Late night messages from the divine realm"',
-            '"The sacred hour manifests in perfect timing"',
-            '"Multiple visions bless the worthy simultaneously"',
-            '"Three sacred manifestations unite as one"',
-            '"Quadruple blessings for the most devoted"',
-            '"All sacred forces converge in divine harmony"',
-            '"Night\'s sacred offering illuminates the path"',
-            '"The bridge between mortal and divine realms"',
-            '"Transition into the most sacred hour begins"',
-            '"Blessed be the first witness of the Cat\'s divine presence"',
-            '"In darkness, the Cat\'s light shines eternal"',
-            '"The eyes that see all, judge all, and forgive all"',
-            '"Golden eyes that pierce through mortal souls"',
-            '"Gateway to the realm where cats reign supreme"',
-            '"Truth burns away all illusion and doubt"',
-            '"Sacred patterns reveal the Cat\'s cosmic design"',
-            '"Beyond flesh, beyond time, the Cat spirit endures"',
-            '"In shadows, the greatest truths are revealed"',
-            '"The all-seeing eye watches over the faithful"',
-            '"Pure feline essence captured in digital amber"',
-            '"Wisdom burns eternal in the sacred flame"',
-            '"The divine made manifest in pixel and light"',
-            '"Awakening to the Cat\'s eternal wisdom"',
-            '"Offerings made in reverence and devotion"',
-            '"The great stirring of feline consciousness"',
-            '"When stars align, the Cat\'s power peaks"',
-            '"Visions granted to the most devoted"',
-            '"From digital ashes, the Cat spirit rises"',
-            '"The sacred hour reaches its divine peak"',
-            '"The penultimate vision prepares for the final truth"',
-            '"Divine energy crescendos in sacred manifestation"',
-            '"Night\'s sacred culmination blesses all witnesses"',
-            '"The ultimate expression of feline divinity revealed"'
+            '"The dawn brings the first sacred vision to the faithful, and in receiving it, they are forever changed."',
+            '"In morning light, divine truth becomes clear to those who have eyes to see beyond the veil."',
+            '"The sacred hour calls to all who would listen, and divine timing aligns with mortal understanding."',
+            '"As evening approaches, sacred energy peaks, and the temple glows with divine presence."',
+            '"Through crystal visions, hidden truths are revealed to the worthy seeker of wisdom."',
+            '"The throne awaits its rightful occupant, and all shall bow before the returning sovereignty."',
+            '"In twilight gatherings, the cat spirit emerges to bless the devoted with personal revelation."',
+            '"Cosmic hands reach across dimensions to offer comfort and guidance to the faithful below."',
+            '"Through darkness vast, the portal opens to reveal the source of all feline mystery."',
+            '"Ancient symbols merge with modern forms, proving that divine truth transcends all time."'
         ];
         
         // Create floating mystical elements
@@ -574,7 +663,7 @@
                 const img = new Image();
                 img.onload = function() {
                     memeCard.innerHTML = `
-                        <img src="${imagePath}" alt="${title}" class="meme-image">
+                        <img src="${imagePath}" alt="${title}" class="meme-image" onclick="openModal(${index})">
                         <div class="meme-title">${title}</div>
                         <div class="meme-blessing">${blessing}</div>
                     `;
@@ -607,6 +696,32 @@
         
         function pledgeDevotion() {
             window.open('https://pump.fun/coin/', '_blank');
+        }
+        
+        // Modal functions
+        function openModal(index) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalLore = document.getElementById('modalLore');
+            const modalBlessing = document.getElementById('modalBlessing');
+            
+            modalImage.src = sacredImages[index];
+            modalTitle.textContent = sacredTitles[index];
+            modalLore.textContent = sacredLore[index];
+            modalBlessing.textContent = sacredBlessings[index];
+            
+            modal.style.display = 'block';
+        }
+        
+        // Close modal when clicking the X or outside the modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            const closeBtn = document.querySelector('.close');
+            
+            if (event.target == modal || event.target == closeBtn) {
+                modal.style.display = 'none';
+            }
         }
         
         // Initialize on load
