@@ -13,6 +13,122 @@
             box-sizing: border-box;
         }
         
+        /* Shrine access button */
+        .shrine-button {
+            background: linear-gradient(45deg, #4a0e4e 0%, #8b0000 50%, #4a0e4e 100%);
+            color: #d4af37;
+            padding: 1.2rem 3rem;
+            border: 2px solid #8b4513;
+            border-radius: 0;
+            font-size: 1.3rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 1rem;
+            box-shadow: 0 0 25px rgba(139, 0, 0, 0.4);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shrine-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        .shrine-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(139, 0, 0, 0.8);
+            border-color: #d4af37;
+            background: linear-gradient(45deg, #6a0e6e 0%, #b30000 50%, #6a0e6e 100%);
+            animation: buttonPulse 0.3s ease-in-out infinite alternate;
+        }
+        
+        .shrine-button:hover::before {
+            left: 100%;
+        }
+        
+        // Show Meme Shrine function
+        function showMemeShrine() {
+            // List of all photo files from your GitHub repo
+            const memeImages = [
+                'images/photo_2024-07-25_21-00-12.jpg',
+                'images/photo_2024-07-25_21-12-26.jpg',
+                'images/photo_2024-07-25_21-14-02.jpg',
+                'images/photo_2024-07-25_21-15-50.jpg',
+                'images/photo_2024-07-25_21-17-09.jpg',
+                'images/photo_2024-07-25_21-22-00.jpg',
+                'images/photo_2024-07-25_21-23-43.jpg',
+                'images/photo_2024-07-25_21-33-16.jpg',
+                'images/photo_2024-07-25_21-35-32.jpg',
+                'images/photo_2024-07-25_21-38-15.jpg',
+                'images/photo_2024-07-25_21-42-21.jpg',
+                'images/photo_2024-07-25_21-47-00.jpg',
+                'images/photo_2024-07-25_21-50-05.jpg',
+                'images/photo_2024-07-25_21-51-55.jpg',
+                'images/photo_2024-07-25_22-21-50.jpg',
+                'images/photo_2024-07-25_22-29-59.jpg',
+                'images/photo_2024-07-25_22-54-57.jpg',
+                'images/photo_2024-07-25_23-02-40.jpg',
+                'images/photo_2024-07-25_23-03-07.jpg',
+                'images/photo_2024-07-25_23-21-21.jpg',
+                'images/photo_2024-07-25_23-35-09.jpg',
+                'images/photo_2024-07-26_00-05-39.jpg'
+            ];
+            
+            // Mystical titles for the memes
+            const mysticalTitles = [
+                'The First Summoning', 'Whispers of the Void', 'The Cat\'s Gaze', 'Ancient Prophecy',
+                'Portal to the Realm', 'The Burning Truth', 'Sacred Geometry', 'Feline Transcendence',
+                'The Dark Revelation', 'Mystic Vision', 'Soul of the Cat', 'The Eternal Flame',
+                'Divine Manifestation', 'The Inner Eye', 'Sacred Offering', 'The Great Awakening',
+                'Celestial Alignment', 'The Holy Vision', 'Cat Spirit Rising', 'The Final Truth',
+                'Blessed Apparition', 'The Ultimate Meme'
+            ];
+            
+            const memeGallery = document.getElementById('memeGallery');
+            memeGallery.innerHTML = '';
+            
+            memeImages.forEach((imagePath, index) => {
+                const memeCard = document.createElement('div');
+                memeCard.className = 'meme-card';
+                
+                const title = mysticalTitles[index] || `Sacred Image ${index + 1}`;
+                
+                memeCard.innerHTML = `
+                    <img src="${imagePath}" alt="${title}" class="meme-image" 
+                         onerror="this.style.display='none'" 
+                         onload="this.style.opacity='1'">
+                    <div class="meme-title">${title}</div>
+                    <div class="meme-description">"A blessed artifact from the Cat Realm"</div>
+                `;
+                
+                memeGallery.appendChild(memeCard);
+            });
+            
+            // Show the shrine
+            document.getElementById('memeShrine').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Go back to altar function
+        function goBackToAltar() {
+            document.getElementById('memeShrine').style.display = 'none';
+            document.querySelector('.altar-container').style.display = 'flex';
+            document.querySelector('.pentagram-overlay').style.display = 'block';
+            document.querySelector('.sacred-quote').style.display = 'block';
+        }
+        
         html, body {
             margin: 0;
             padding: 0;
@@ -312,9 +428,140 @@
             z-index: 0;
         }
         
-        @keyframes pentagramRotate {
-            from { transform: translateX(-50%) rotate(0deg); }
-            to { transform: translateX(-50%) rotate(360deg); }
+        /* Meme Shrine Styles */
+        .meme-shrine {
+            display: none;
+            position: relative;
+            z-index: 3;
+            min-height: 100vh;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .shrine-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .shrine-title {
+            font-family: 'Creepster', cursive;
+            font-size: 3rem;
+            color: #ff4500;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+            margin-bottom: 1rem;
+            animation: titlePulse 3s ease-in-out infinite alternate;
+        }
+        
+        .shrine-subtitle {
+            font-size: 1.5rem;
+            color: #d4af37;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button {
+            background: linear-gradient(45deg, #8b4513 0%, #d4af37 50%, #8b4513 100%);
+            color: #000;
+            padding: 0.8rem 2rem;
+            border: 2px solid #d4af37;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+        
+        .meme-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .meme-card {
+            background: rgba(20, 10, 10, 0.9);
+            border: 2px solid #8b4513;
+            border-radius: 15px;
+            padding: 1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .meme-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff4500;
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.4);
+        }
+        
+        .meme-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff4500, transparent, #d4af37, transparent, #ff4500);
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .meme-card:hover::before {
+            opacity: 0.6;
+        }
+        
+        .meme-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            filter: sepia(0.2) contrast(1.1);
+            transition: filter 0.3s ease;
+        }
+        
+        .meme-card:hover .meme-image {
+            filter: sepia(0) contrast(1.2) brightness(1.1);
+        }
+        
+        .meme-title {
+            color: #d4af37;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .meme-description {
+            color: #8b4513;
+            font-size: 0.9rem;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .shrine-title {
+                font-size: 2rem;
+            }
+            
+            .meme-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .meme-image {
+                height: 200px;
+            }
         }
         
         /* Responsive design */
@@ -365,6 +612,12 @@
             .contract-address {
                 font-size: 0.9rem;
             }
+            
+            .shrine-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
         }
     </style>
 </head>
@@ -384,6 +637,9 @@
         
         <!-- Sacred button -->
         <button class="worship-button" onclick="beginWorship()">PARTICIPATE IN THE ICO</button>
+        
+        <!-- Shrine access button -->
+        <button class="shrine-button" onclick="enterShrine()">ENTER THE SACRED SHRINE</button>
         
         <!-- X page button -->
         <button class="x-button" onclick="openTwitter()">FOLLOW THE ORDER ON X</button>
@@ -409,6 +665,19 @@
     <!-- Pentagram overlay -->
     <div class="pentagram-overlay">⭐</div>
     
+    <!-- Meme Shrine Page -->
+    <div class="meme-shrine" id="memeShrine">
+        <div class="shrine-header">
+            <button class="back-button" onclick="goBackToAltar()">← RETURN TO THE ALTAR</button>
+            <h1 class="shrine-title">THE SACRED MEME SHRINE</h1>
+            <p class="shrine-subtitle">"Behold the Holy Collection of Cat Spirits"</p>
+        </div>
+        
+        <div class="meme-gallery" id="memeGallery">
+            <!-- Meme cards will be generated here -->
+        </div>
+    </div>
+    
     <script>
         // Create floating sigils
         function createMysticalSigils() {
@@ -427,20 +696,20 @@
             }
         }
         
-        // Begin worship function
+        // Begin worship function - NOW OPENS MEME SHRINE
         function beginWorship() {
-            // Create dramatic effect
-            document.body.style.filter = 'contrast(1.5) brightness(1.2)';
-            document.body.style.animation = 'titlePulse 0.1s ease-in-out infinite';
+            // Hide main altar and show meme shrine
+            document.querySelector('.altar-container').style.display = 'none';
+            document.querySelector('.pentagram-overlay').style.display = 'none';
+            document.querySelector('.sacred-quote').style.display = 'none';
             
-            // Show the sacred message
-            setTimeout(() => {
-                alert('🕯️👁️ WELCOME TO THE ORDER, CHOSEN ONE 👁️🕯️\n\n"The Cat sees all. The Cat knows all.\nThy devotion has been recorded in the Sacred Registry.\n\nThe Order of the Floating Cat acknowledges thy presence.\nPrepare thy soul for the Great Revelation.\n\nThou art now bound to the Eternal Covenant."\n\n— High Priestess of the Eternal Whisker\n\nThe ritual is complete. The cats are pleased.');
-                
-                // Reset effects
-                document.body.style.filter = '';
-                document.body.style.animation = '';
-            }, 1000);
+            // Show meme shrine
+            showMemeShrine();
+        }
+        
+        // Enter Sacred Shrine function
+        function enterShrine() {
+            window.location.href = 'shrine.html';
         }
         
         // Open Twitter/X function
