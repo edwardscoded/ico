@@ -30,7 +30,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text y="16" font-size="16">👁️</text></svg>'), auto;
         }
         
-        /* Create the ritual chamber background with CSS */
+        /* Full screen background layer */
         body::before {
             content: '';
             position: fixed;
@@ -38,77 +38,25 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: 
-                /* Cat eyes at top */
-                radial-gradient(circle at 35% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
-                radial-gradient(circle at 65% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
-                /* Pentagram glow in center */
-                radial-gradient(circle at 50% 60%, rgba(139, 69, 19, 0.4) 10%, transparent 20%),
-                /* Candle glows */
-                radial-gradient(circle at 15% 70%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
-                radial-gradient(circle at 85% 70%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
-                radial-gradient(circle at 25% 85%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
-                radial-gradient(circle at 75% 85%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
-                /* Base darkness */
-                linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+            background: url('images/Untitled-1.png') center center no-repeat;
+            background-size: cover;
             z-index: -2;
         }
         
-        /* Add pentagram symbols */
+        /* Fallback if image doesn't load */
         body::after {
-            content: '⭐';
-            position: fixed;
-            top: 58%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            color: rgba(139, 69, 19, 0.6);
-            text-shadow: 0 0 20px rgba(139, 69, 19, 0.8);
-            animation: pentagramRotate 20s linear infinite;
-            z-index: -1;
-        }
-        
-        @keyframes pentagramRotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        /* Add floating mystical elements */
-        .ritual-elements {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .ritual-elements::before {
-            content: '👁️';
-            position: absolute;
-            top: 12%;
-            left: 33%;
-            font-size: 2rem;
-            color: rgba(0, 0, 0, 0.8);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            animation: eyeBlink 8s ease-in-out infinite;
-        }
-        
-        .ritual-elements::after {
-            content: '👁️';
-            position: absolute;
-            top: 12%;
-            right: 33%;
-            font-size: 2rem;
-            color: rgba(0, 0, 0, 0.8);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            animation: eyeBlink 8s ease-in-out infinite 1s;
-        }
-        
-        @keyframes eyeBlink {
-            0%, 90%, 100% { opacity: 1; }
-            95% { opacity: 0; }
+            background: 
+                radial-gradient(circle at 35% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
+                radial-gradient(circle at 65% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
+                radial-gradient(circle at 50% 60%, rgba(139, 69, 19, 0.4) 10%, transparent 20%),
+                linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+            z-index: -3;
         }
         
         /* Floating mystical elements */
@@ -436,9 +384,6 @@
 <body>
     <!-- Mystical background -->
     <div class="mystical-bg" id="mystical-bg"></div>
-    
-    <!-- Ritual elements -->
-    <div class="ritual-elements"></div>
     
     <!-- Main altar -->
     <div class="altar-container">
