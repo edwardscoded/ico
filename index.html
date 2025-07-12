@@ -192,18 +192,110 @@
             to { transform: translateY(-3px) scale(1.02); }
         }
         
+        /* X page button */
+        .x-button {
+            background: linear-gradient(45deg, #1a1a1a 0%, #333333 50%, #1a1a1a 100%);
+            color: #d4af37;
+            padding: 1rem 3rem;
+            border: 2px solid #8b4513;
+            border-radius: 0;
+            font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 1rem;
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.3);
+            text-transform: uppercase;
+        }
+        
+        .x-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(139, 69, 19, 0.6);
+            border-color: #d4af37;
+            background: linear-gradient(45deg, #333333 0%, #555555 50%, #333333 100%);
+        }
+        
+        /* Contract Address Section */
+        .contract-section {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .contract-bar {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #8b4513;
+            border-radius: 25px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.4);
+        }
+        
+        .contract-label {
+            color: #ff4500;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px rgba(255, 69, 0, 0.6);
+        }
+        
+        .contract-address {
+            color: #d4af37;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            flex: 1;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .copy-button {
+            background: linear-gradient(45deg, #8b4513 0%, #d4af37 50%, #8b4513 100%);
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+        
+        .copy-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            background: linear-gradient(45deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
+        }
+        
+        .copy-icon {
+            font-size: 1.2rem;
+        }
+        
         /* Sacred quote */
         .sacred-quote {
-            position: absolute;
+            position: fixed;
             bottom: 8rem;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1rem;
-            color: rgba(212, 175, 55, 0.7);
+            font-size: 1.1rem;
+            color: #d4af37;
             font-style: italic;
             text-align: center;
             max-width: 600px;
             line-height: 1.5;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
         
         /* Pentagram overlay */
@@ -255,6 +347,23 @@
                 font-size: 0.9rem;
                 padding: 0 1rem;
             }
+            
+            .x-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+            
+            .contract-bar {
+                padding: 0.8rem 1.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .contract-address {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -269,11 +378,25 @@
         <h2 class="subtitle">$ICO</h2>
         
         <!-- Summoning text -->
-        <p class="summoning-text">YOU WERE SUMMONED.</p>
+        <p class="summoning-text">YOU'VE BEEN SUMMONED.</p>
         <p class="will-text">This is not your choice. It is the Cat's will.</p>
         
         <!-- Sacred button -->
         <button class="worship-button" onclick="beginWorship()">PARTICIPATE IN THE ICO</button>
+        
+        <!-- X page button -->
+        <button class="x-button" onclick="openTwitter()">FOLLOW THE ORDER ON X</button>
+        
+        <!-- Contract Address section -->
+        <div class="contract-section">
+            <div class="contract-bar">
+                <span class="contract-label">CA:</span>
+                <span class="contract-address" id="contractAddress">COMING SOON</span>
+                <button class="copy-button" onclick="copyContract()" id="copyBtn">
+                    <span class="copy-icon">📋</span>
+                </button>
+            </div>
+        </div>
         
         <!-- Sacred quote -->
         <div class="sacred-quote">
@@ -317,6 +440,36 @@
                 document.body.style.filter = '';
                 document.body.style.animation = '';
             }, 1000);
+        }
+        
+        // Open Twitter/X function
+        function openTwitter() {
+            // Replace with your actual Twitter/X handle
+            window.open('https://twitter.com/InitialCatICO', '_blank');
+        }
+        
+        // Copy contract address function
+        function copyContract() {
+            const contractAddress = document.getElementById('contractAddress').textContent;
+            
+            if (contractAddress === 'COMING SOON') {
+                alert('👁️ THE SACRED CONTRACT IS NOT YET REVEALED 👁️\n\n"Patience, mortal. The ancient cats are still inscribing the contract into the blockchain. The address shall be revealed when the stars align."\n\n— Oracle of the Digital Realm');
+                return;
+            }
+            
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalIcon = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<span class="copy-icon">✅</span>';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalIcon;
+                }, 2000);
+                
+                alert('📋 CONTRACT ADDRESS COPIED TO THE SACRED SCROLLS! 📋\n\n"The address now dwells within thy digital parchment. Use it wisely, chosen one."');
+            }).catch(() => {
+                alert('❌ THE SPIRITS PREVENT THE COPYING ❌\n\nManually copy: ' + contractAddress);
+            });
         }
         
         // Ambient mystical effects
