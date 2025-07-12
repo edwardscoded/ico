@@ -14,13 +14,33 @@
         }
         
         body {
-            background: url('images/af2b85cb-01f5-4921-ac63-7f2f89d53ff1.png') center center / cover no-repeat fixed;
+            background: url('images/af2b85cb-01f5-4921-ac63-7f2f89d53ff1.png') center center no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
             color: #d4af37;
             font-family: 'IM Fell DW Pica', serif;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text y="16" font-size="16">👁️</text></svg>'), auto;
+        }
+        
+        /* Fallback for very wide screens */
+        html {
+            background: #000000;
+        }
+        
+        /* Ensure background covers on ultra-wide screens */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/af2b85cb-01f5-4921-ac63-7f2f89d53ff1.png') center center no-repeat;
+            background-size: cover;
+            z-index: -1;
         }
         
         /* Floating mystical elements */
