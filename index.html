@@ -38,28 +38,24 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: url('images/Untitled-1.png') center center no-repeat;
+            background: 
+                url('./images/Untitled-1.png') center center no-repeat,
+                url('/images/Untitled-1.png') center center no-repeat,
+                url('images/Untitled-1.png') center center no-repeat,
+                /* CSS fallback ritual chamber */
+                radial-gradient(circle at 35% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
+                radial-gradient(circle at 65% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
+                radial-gradient(circle at 50% 60%, rgba(139, 69, 19, 0.4) 10%, transparent 20%),
+                radial-gradient(circle at 15% 70%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
+                radial-gradient(circle at 85% 70%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
+                radial-gradient(circle at 25% 85%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
+                radial-gradient(circle at 75% 85%, rgba(255, 140, 0, 0.6) 1%, transparent 3%),
+                linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
             background-size: cover;
             z-index: -2;
         }
         
-        /* Fallback if image doesn't load */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: 
-                radial-gradient(circle at 35% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
-                radial-gradient(circle at 65% 15%, rgba(255, 69, 0, 0.9) 2%, rgba(139, 37, 0, 0.6) 4%, transparent 6%),
-                radial-gradient(circle at 50% 60%, rgba(139, 69, 19, 0.4) 10%, transparent 20%),
-                linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
-            z-index: -3;
-        }
-        
-        /* Floating mystical elements */
+        /* Floating mystical sigils */
         .mystical-bg {
             position: fixed;
             top: 0;
@@ -85,7 +81,7 @@
             75% { transform: translateY(-25px) rotate(270deg); opacity: 0.3; }
         }
         
-        /* Add dark overlay to ensure text readability */
+        /* Main container */
         .altar-container {
             position: relative;
             z-index: 2;
@@ -96,75 +92,7 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Remove the custom cat eyes since they're in the background */
-        .cat-eyes {
-            display: none;
-        }
-        
-        .eye {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, #ff4500 30%, #8b2500 70%, #000000 100%);
-            border-radius: 50%;
-            position: relative;
-            animation: eyeGlow 4s ease-in-out infinite alternate, eyeBlink 8s ease-in-out infinite;
-            box-shadow: 
-                0 0 30px rgba(255, 69, 0, 0.8),
-                0 0 60px rgba(255, 69, 0, 0.4),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-        
-        .eye::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            background: #000000;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-        }
-        
-        .eye::after {
-            content: '';
-            position: absolute;
-            top: 30%;
-            left: 40%;
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: pupilShine 3s ease-in-out infinite;
-        }
-        
-        @keyframes eyeGlow {
-            from { 
-                box-shadow: 0 0 30px rgba(255, 69, 0, 0.6), 0 0 60px rgba(255, 69, 0, 0.3);
-            }
-            to { 
-                box-shadow: 0 0 50px rgba(255, 69, 0, 1), 0 0 100px rgba(255, 69, 0, 0.6);
-            }
-        }
-        
-        @keyframes eyeBlink {
-            0%, 90%, 100% { 
-                transform: scaleY(1);
-                opacity: 1;
-            }
-            95% { 
-                transform: scaleY(0.1);
-                opacity: 0.8;
-            }
-        }
-        
-        @keyframes pupilShine {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
+            background: rgba(0, 0, 0, 0.2);
         }
         
         /* Main title */
@@ -278,53 +206,7 @@
             to { transform: translateY(-3px) scale(1.02); }
         }
         
-        /* Remove bottom pentagram since it's in the background */
-        .bottom-pentagram {
-            display: none;
-        }
-        
-        @keyframes pentagramRotate {
-            from { transform: translateX(-50%) rotate(0deg); }
-            to { transform: translateX(-50%) rotate(360deg); }
-        }
-        
-        /* Remove custom candles since they're in the background */
-        .candle {
-            display: none;
-        }
-        
-        @keyframes flicker {
-            0%, 100% { 
-                transform: scale(1) rotate(-2deg);
-                opacity: 0.9;
-            }
-            50% { 
-                transform: scale(1.1) rotate(2deg);
-                opacity: 1;
-            }
-        }
-        
-        .candle-left {
-            top: 20%;
-            left: 10%;
-        }
-        
-        .candle-right {
-            top: 20%;
-            right: 10%;
-        }
-        
-        .candle-bottom-left {
-            bottom: 20%;
-            left: 15%;
-        }
-        
-        .candle-bottom-right {
-            bottom: 20%;
-            right: 15%;
-        }
-        
-        /* Quote at bottom */
+        /* Sacred quote */
         .sacred-quote {
             position: absolute;
             bottom: 8rem;
@@ -336,6 +218,24 @@
             text-align: center;
             max-width: 600px;
             line-height: 1.5;
+        }
+        
+        /* Pentagram overlay */
+        .pentagram-overlay {
+            position: fixed;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: rgba(139, 69, 19, 0.4);
+            animation: pentagramRotate 20s linear infinite;
+            text-shadow: 0 0 20px rgba(139, 69, 19, 0.6);
+            z-index: 0;
+        }
+        
+        @keyframes pentagramRotate {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
         }
         
         /* Responsive design */
@@ -364,19 +264,10 @@
                 letter-spacing: 2px;
             }
             
-            .cat-eyes {
-                width: 200px;
-                height: 80px;
-                padding: 0 30px;
-            }
-            
-            .eye {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .candle {
-                display: none;
+            .sacred-quote {
+                bottom: 6rem;
+                font-size: 0.9rem;
+                padding: 0 1rem;
             }
         }
     </style>
@@ -396,7 +287,7 @@
         <p class="will-text">This is not your choice. It is the Cat's will.</p>
         
         <!-- Sacred button -->
-        <button class="worship-button" onclick="beginWorship()">BEGIN WORSHIP</button>
+        <button class="worship-button" onclick="beginWorship()">PARTICIPATE IN THE ICO</button>
         
         <!-- Sacred quote -->
         <div class="sacred-quote">
@@ -404,6 +295,9 @@
             — The Book of Whisker, Chapter 1, Verse 1
         </div>
     </div>
+    
+    <!-- Pentagram overlay -->
+    <div class="pentagram-overlay">⭐</div>
     
     <script>
         // Create floating sigils
@@ -431,26 +325,13 @@
             
             // Show the sacred message
             setTimeout(() => {
-                alert('🕯️👁️ WELCOME, CHOSEN ONE 👁️🕯️\n\n"The Cat sees all. The Cat knows all.\nThy devotion has been noted in the Sacred Registry.\n\nThe Order of the Floating Cat acknowledges thy presence.\nPrepare thy soul for the Great Revelation."\n\n— High Priestess of the Eternal Whisker');
+                alert('🕯️👁️ WELCOME TO THE ORDER, CHOSEN ONE 👁️🕯️\n\n"The Cat sees all. The Cat knows all.\nThy devotion has been recorded in the Sacred Registry.\n\nThe Order of the Floating Cat acknowledges thy presence.\nPrepare thy soul for the Great Revelation.\n\nThou art now bound to the Eternal Covenant."\n\n— High Priestess of the Eternal Whisker\n\nThe ritual is complete. The cats are pleased.');
                 
                 // Reset effects
                 document.body.style.filter = '';
                 document.body.style.animation = '';
             }, 1000);
         }
-        
-        // Random eye movement
-        setInterval(() => {
-            if (Math.random() < 0.1) {
-                const eyes = document.querySelectorAll('.eye::after');
-                document.querySelectorAll('.eye').forEach(eye => {
-                    eye.style.transform = `scale(${0.9 + Math.random() * 0.2})`;
-                    setTimeout(() => {
-                        eye.style.transform = '';
-                    }, 300);
-                });
-            }
-        }, 3000);
         
         // Ambient mystical effects
         setInterval(() => {
